@@ -1,0 +1,6 @@
+﻿Entity,Continent,Hemisphere,Year,Average monthly precipitation,ghgEmissions,temperature_anomaly,Annual CO2 emissions (per capita),Location,pop
+Angola,Africa,Southern Hemisphere,1990,8.102467952,43700000,0.371666667,0.4295,Central,10335050
+Kazakhstan,Asia,Northern Hemisphere,1990,2.293659997,308630000,0.528333333,17.1641,Central,16530170
+Australia,Oceania,Southern Hemisphere,1990,3.416376681,508660000,0.371666667,16.416,All,
+Bahamas,America,Northern Hemisphere,1990,7.890999794,2160000,0.528333333,7.1785,Central,255540
+Austria,Europa,Northern Hemisphere,1990,7.97457264,76220000,0.528333333,8.0431,Central,7669790
