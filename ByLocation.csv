@@ -1,4 +1,4 @@
-Year,Continent,Location,Average monthly precipitation,Total GHG emissions excluding LUCF (CAIT),temperature_anomaly,Annual CO2 emissions (per capita),"Total population estimates, 1970-2100 (IIASA (2015))"
+Year,Continent,Location,AverageMonthlyPrecipitation,TotalGHGEmissionsExcludingLUCF(CAIT),temperature_anomaly,AnnualCO2Emissions(percapita),TotalPopulationEstimates
 1970.0,Africa,Central,13.038033187666665,0.0,0.004444444666666668,0.585488888888889,4527550.0
 1970.0,Africa,Eastern,8.4218205836875,0.0,0.041875000125,0.35534,6692122.5
 1970.0,Africa,Northern,1.068248779,0.0,-0.038333333,3.07265,14477561.666666666
