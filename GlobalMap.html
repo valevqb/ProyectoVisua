@@ -1,0 +1,450 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  </head>
+  <body>
+
+    <!-- Load d3.js -->
+    <script src="http://d3js.org/d3.v4.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <div class = "deskt justify-content-center">
+    <!--Barra-->
+    <div class = "navbars justify-content-center">
+      <div class = "navbarsContent"> Hombre Actúa para su Destrucción Impredecible</div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+        style="background-color: #445F59; border-color: #445F59; color: white; display: block; height: 46px; width: 65px; top: -30px;">
+          <i style = "color: white" class="fa fa-bars"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #ABC4BE;">
+          <a class="dropdown-item" href="#">Map</a>
+          <a class="dropdown-item" href="#">Years</a>
+        </div>
+      </div>
+
+      <!--Boton info-->
+      <div style = "margin-top: -30px; margin-left: 75px; height: 46px; width: 65px;">
+        <button class="btn btn-secondary" type="button" 
+        style = "background-color: #445F59; border-color: #445F59; color: white; display: block; height: 46px; width: 65px;" 
+        data-toggle="modal" data-target="#exampleModal">
+          <i style = "color: white" class="fa fa-info-circle"></i>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document" style="width: 400px; height: 200px;">
+            <div class="modal-content" style="width: 399px;">
+              <div class="modal-header" 
+              style="background-color: #445F59; color: white; align-items: center; width: 399px; height: 31px;">
+                <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Graph Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" 
+                style="background-color: red; color: white; font-size: 14px; height: 31px;">
+                  <i style = "color: white" class="fa fa-close"></i>
+                </button>
+              </div>
+              <div class="modal-body" style="color: black; font-size: 14px;">
+                This is a graph that...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Graph layout-->
+    <div class = "graphDT justify-content-center">Temperature and Precipitation Map</div>
+    <div class = "graphLay" style = "align-items: center;">
+      <div class = "graphLay" id="my_dataviz" width="705" height="623"></div>
+      <button type="button" class="btn btn-ttc" style = "top: 88px;">
+        <i class="bi bi-search"></i>
+      </button>
+      <button type="button" class="btn btn-ttc justify-content-center" style = "top: 110px;">+</button>
+      <button type="button" class="btn btn-ttc justify-content-center" style = "top: 132px;">-</button>
+      <!--Abrir otros mapas-->
+      <div class="btn-group dropright justify-content-center" style = "top: -88px; align-items: center; ">
+        <button type="button" class="btn btn-secondary dropdown-toggle justify-content-center" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+        style = "top: -468px; align-items: center;">
+          <i style = "align-items: center; color: black;" class="bi bi-map"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Continent Map</a>
+          <a class="dropdown-item" href="#">Region Map</a>
+        </div>
+      </div>
+    </div>
+
+    <!--Entra layout-->
+    <div class = "extras" style="margin-top: -666px;">
+    <!--By year-->
+    <h3 class = "subTittle" style = "margin-left: 110px;">Year</h3>
+    <input type="range" class = "slide" id= "yearSlider" min="1970" max="2014" value="1970" 
+    style = "margin-top: 0px; margin-left: 20px;"></input>
+    
+    <!--Drop Continent-->
+    <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false" 
+    style="background-color: white; color: black; margin-top: 150px; margin-left: 60px;">Continents</button>
+    <div class="dropdown-menu" id="dropMenu1" style="background-color: white;">
+      <a class="dropdown-item" href="#">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAfrica" checked>
+          <label class="custom-control-label" for="checkAfrica">Africa</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAmerica" checked>
+          <label class="custom-control-label" for="checkAmerica">America</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAsia" checked>
+          <label class="custom-control-label" for="checkAsia">Asia</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkEuropa" checked>
+          <label class="custom-control-label" for="checkEuropa">Europe</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkOceania" checked>
+          <label class="custom-control-label" for="checkOceania">Oceania</label>
+        </div>
+      </a>
+    </div>    
+
+
+    <!--Legend-->
+    <canvas class="canvass" width="200" height="100" style="margin-top: 300px;"></canvas>
+    <h3 class = "subTittle" style = "margin-left: 80px; margin-top: 200px">Temperature</h3>
+    <canvas id="myCanvas" class="canvass" width="200" height="100"></canvas>
+    <div class="normalText" style="margin-left: 17px; margin-top: -17px;">
+      <a>-0.52</a>
+      <a style="margin-left: 132px;">1.94</a>
+    </div>
+    <!-- Add a slider -->
+  </div>
+
+</div>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+    .graphLay {
+      height: 623px;
+      width: 680px;
+      background-color: white;
+      margin-right: 20px;
+      margin-left: 10px;
+      margin-top: 0px;
+      z-index: 1;
+      position: static;
+    }
+    .extras {
+      height: 653PX;
+      width: 230px;
+      background-color: #ABC4BE;
+      margin-right: 20px;
+      margin-left: 720px;
+      margin-top: 10px;
+    }
+    .deskt{
+      height: 737px;
+      width: 965px;
+      background-color: #C9D9D5;
+    }
+    .graphDT{
+      height: 23px;
+      width: 690px;
+      background-color: white;
+      color: black;
+      text-align: center;
+      margin: 20px;
+      margin-left: 10px;
+      margin-top: 15px;
+      margin-bottom: 0px;
+      z-index: 1;
+      position: static;
+      font-family: 'Roboto Medium', sans-serif;   
+    }
+    .navbars{
+      height: 46px;
+      width: 965px;
+      background-color: #445F59;
+      color: white;
+      font-size: 20px;
+      font-family: 'Roboto Regular', sans-serif;
+    }
+    .navbarsContent{
+      text-align: center;
+      text-justify: center;
+      font-family: 'Roboto Light', sans-serif;  
+    }
+    .btn-ttc, .btn-secondary{
+      padding: 0px;
+      height: 22px;;
+      width: 22px;
+      margin-left: 10px;
+      margin-top: 0px;
+      background-color: rgba(196, 196, 196, 0.55);
+      display: none;
+      position: absolute;
+      border-color: rgba(196, 196, 196, 0.55);
+      z-index: 1;
+      border-color: #C4C4C4;
+      font-family: 'Roboto Light', sans-serif;  
+    }
+    .dropdown-menu{
+      margin-left: 10px;
+      margin-top: 0px;
+      background-color: rgba(196, 196, 196, 0.55);
+      display: none;
+      position: absolute;
+      border-color: rgba(196, 196, 196, 0.55);
+      z-index: 1;
+      border-color: #C4C4C4;
+      font-family: 'Roboto Regular', sans-serif;   
+      font-size: 14px;
+    }
+    .btn-primary, .btn-danger{
+        font-family: 'Roboto Regular', sans-serif;   
+        font-size: 14px;
+      }
+    .graphLay:hover .btn-secondary{
+      display: inline-block;
+      text-align: center !important;
+      text-justify: center !important;
+      z-index: 1;
+      display: block;
+    }
+    .btn-secondary:hover{
+      background-color: rgba(196, 196, 196, 0.55);
+      border-color: rgba(196, 196, 196, 0.55);
+      border-color: #C4C4C4;
+      font-family: 'Roboto Light', sans-serif; 
+    }
+    .graphLay:hover .btn-ttc{
+      display: inline-block;
+      text-align: center !important;
+      text-justify: center !important;
+      z-index: 1;
+      display: block;
+    }
+    .slide{
+      height: 3px;
+      width: 198px;
+      background-color: black !important;
+      color: black !important;
+    }
+    .slide:hover{
+      background-color: black !important;
+      color: black !important;
+    }
+    .subTittle{
+      font-size: 14px;
+      color: black;
+      position: relative;
+      margin-top: 10px !important;
+      font-family: 'Roboto', sans-serif;
+    }
+    .normalText{
+      font-size: 14px;
+      color: black;
+      position: relative;
+      margin-top: 10px !important;   
+      font-family: 'Roboto Light', sans-serif;   
+    }
+    .canvass{
+      height: 13px;
+      width: 260px;
+      margin-left: 5px;
+    }
+  </style>
+</html>
+
+
+<script>
+
+  var selectedYear = 1970;
+  var selectedContinents = ["Asia","Europa","Africa","Oceania","America"];
+
+  var c = document.getElementById("myCanvas");
+  var ctx = c.getContext("2d");
+
+  // Create gradient
+  var grd = ctx.createLinearGradient(0,0,200,0);
+  grd.addColorStop(0,"#FFE8CD");
+  grd.addColorStop(1,"#AF5700");
+
+  // Fill with gradient
+  ctx.fillStyle = grd;
+  ctx.fillRect(10,10,150,80);
+
+  //Crear el svg para dibujar el mapa
+  function create(){
+        var svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", 1000)
+            .attr("height", 1000)
+          .append("g")
+            .attr("transform",
+                  "translate(" + 0 + "," + 0 + ")",
+                  "position","absolute")
+        return svg;
+  }
+
+  function start(svg, selectedYear, selectedContinents){
+
+    // Map and projection
+    var path = d3.geoPath();
+    var projection = d3.geoMercator()
+      .scale(70)
+      .center([0,20])
+      .translate([345, 260]);
+    
+    // Data and color scale
+    var data = d3.map();
+
+  // Load external data and boot
+  d3.queue()
+    .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")
+    .defer(d3.csv, "https://raw.githubusercontent.com/valevqb/ProyectoVisua/main/ByEntity.csv", 
+    function(d) { data.set([d.Entity,d.Year], 
+                  [+d.temperature_anomaly,d.Continent,d.Hemisphere,+d.AverageMonthlyPrecipitation,d.Location]); })
+    .await(ready);
+
+    let colorTemperature = d3.scaleLinear()
+    .domain([-0.205,0.919166667])
+    .range(["#FFE8CD", "#AF5700"]);
+
+    var tooltipDiv = d3.select("body").append("div")    
+    .attr("class", "tooltip")               
+    .style("opacity", 0)
+    .attr("class", "tooltip")
+    .style("background-color", "black")
+    .style("border-radius", "5px")
+    .style("padding", "10px")
+    .style("color", "white");
+
+    var showTooltip = function(d) {
+      try{
+        tooltipDiv
+          .transition()
+          .duration(200)
+        tooltipDiv
+          .style("opacity", 1)
+          .html("Location: " + ((data.get([d.properties.name,selectedYear]))[1]) + ", " + 
+                ((data.get([d.properties.name,selectedYear]))[4]) + ", " +
+                d.properties.name + "<br/>" +
+               "Temperature: " + ((data.get([d.properties.name,selectedYear]))[0]) + "<br/>" +
+               "Precipitation: " + ((data.get([d.properties.name,selectedYear]))[3]))
+          .style("left", (d3.mouse(this)[0]) + "px")
+          .style("top", (d3.mouse(this)[1]) + "px")
+      } catch{
+      }
+    }
+    var hideTooltip = function(d) {
+      tooltipDiv
+          .transition()
+          .duration(200)
+          .style("opacity", 0)
+    }
+    
+    var moveTooltip = function(d) {
+      tooltipDiv
+        .style("left", (d3.mouse(this)[0]) + "px")
+        .style("top", (d3.mouse(this)[1]) + "px")
+    }
+  
+  function ready(error, topo) {
+  
+    // Draw the map
+    svg.append("g")
+      .selectAll("path")
+      .data(topo.features.filter(function (d){
+        try{
+          return (selectedContinents.includes((data.get([d.properties.name,selectedYear]))[1]));
+        } catch {}
+        }))
+      .enter()
+      .append("path")
+        // draw each country
+        .attr("d", d3.geoPath()
+          .projection(projection)
+        )
+        // set the color of each country
+        .attr("fill", function (d) {
+          try{
+            d.total = ((data.get([d.properties.name,selectedYear]))[0]) || 0;
+            return (colorTemperature(d.total));
+          } catch{
+            return "rgba(155, 155, 155, 40%)"
+          }
+        })
+        .style("stroke", "black")
+        .attr("class", function(d){ return "Country" } )
+        .style("opacity", .8)
+        .on("mouseover", showTooltip )
+        .on("mousemove", moveTooltip )
+        .on("mouseleave", hideTooltip)
+      }
+  }
+
+      // Listen to the slider?
+      d3.select("#yearSlider").on("change", function(d){
+        selectedValue = this.value;
+        d3.select("svg").remove();
+        selectedYear = selectedValue;
+        start(create(), selectedYear, selectedContinents);
+      })
+
+      //Continent selection
+      d3.select("#dropMenu1").on("click", function(d){
+        d3.select("svg").remove();
+        if(selectedContinents.indexOf((event.target.id).substr(5)) == -1){
+          selectedContinents.push((event.target.id).substr(5))
+        }
+        else{
+          selectedContinents.splice(selectedContinents.indexOf((event.target.id).substr(5)),1)
+        }
+        if(selectedContinents.indexOf('') != -1){
+          selectedContinents.splice(selectedContinents.indexOf(''),1)
+        }
+        start(create(), selectedYear, selectedContinents);
+      })
+      
+      start(create(), selectedYear, selectedContinents);
+  </script>

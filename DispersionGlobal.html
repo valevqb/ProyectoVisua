@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+  </head>
+  <body>
+      
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://d3js.org/d3.v4.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+
+  <!-- Create a div where the graph will take place -->
+<div class = "deskt">
+    <!--Barra-->
+    <div class = "navbars">
+      <div class = "navbarsContent"> Hombre Actúa para su Destrucción Impredecible</div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" 
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" 
+        style="background-color: #445F59; border-color: #445F59; color: white; display: block; height: 46px; width: 65px; top: -30px;">
+          <i style = "color: white" class="fa fa-bars"></i>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" style="background-color: #ABC4BE;">
+          <a class="dropdown-item" href="Map.html">Map</a>
+          <a class="dropdown-item" href="#">Years</a>
+        </div>
+      </div>
+
+      <!--Boton info-->
+      <div style = "margin-top: -30px; margin-left: 75px; height: 46px; width: 65px;">
+        <button class="btn btn-secondary" type="button" 
+        style = "background-color: #445F59; border-color: #445F59; color: white; display: block; height: 46px; width: 65px;" 
+        data-toggle="modal" data-target="#exampleModal">
+          <i style = "color: white" class="fa fa-info-circle"></i>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" 
+        aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document" style="width: 400px; height: 200px;">
+            <div class="modal-content" style="width: 399px;">
+              <div class="modal-header" 
+              style="background-color: #445F59; color: white; align-items: center; width: 399px; height: 31px;">
+                <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Graph Information</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" 
+                style="background-color: red; color: white; font-size: 14px; height: 31px;">
+                  <i style = "color: white" class="fa fa-close"></i>
+                </button>
+              </div>
+              <div class="modal-body" style="color: black; font-size: 14px;">
+                This is a graph that...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!--Graph layout-->
+    <div class = "graphDT">Pollution and Population Graph</div>
+    <div class = "graphLay" id="my_dataviz" style = "align-items: center;">
+      <button type="button" class="btn btn-ttc" style = "top: 88px;">
+        <i class="bi bi-search"></i>
+      </button>
+      <button type="button" class="btn btn-ttc" style = "top: 110px;">+</button>
+      <button type="button" class="btn btn-ttc" style = "top: 132px;">-</button>
+      <!--Abrir otros mapas-->
+      <div class="btn-group dropright" style = "top: -88px; align-items: center;">
+        <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" 
+        aria-expanded="false" style = "top: 165px; align-items: center;">
+          <i style = "align-items: center; color: black;" class="bi bi-map"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="DispersionPorContinente.html">Continent Graph</a>
+          <a class="dropdown-item" href="#">Region Graph</a>
+        </div>
+      </div>
+    </div>
+
+    <!--Entra layout-->
+    <div class = "extras" style="position: absolute;">
+    <!--By year-->
+    <h3 class = "subTittle" style = "margin-left: 110px">Year</h3>
+    <input type="range" class = "slide" id= "yearSlider" min="1970" max="2014" value="1970" 
+    style = "position: relative; top: -100; margin-left: 20px;"></input>
+    
+    <!--Drop Continent-->
+    <button class="btn btn-primary dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false" 
+    style="background-color: white; color: black; margin-left: 50px;">Continents</button>
+    <div class="dropdown-menu" id="dropMenu1" style="background-color: white;">
+      <a class="dropdown-item" href="#">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAfrica" checked>
+          <label class="custom-control-label" for="checkAfrica">Africa</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAmerica" checked>
+          <label class="custom-control-label" for="checkAmerica">America</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkAsia" checked>
+          <label class="custom-control-label" for="checkAsia">Asia</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkEuropa" checked>
+          <label class="custom-control-label" for="checkEuropa">Europe</label>
+        </div>
+      </a>
+      <a class="dropdown-item">
+        <!-- Default unchecked -->
+        <div class="custom-control custom-checkbox">
+          <input type="checkbox" class="custom-control-input" id="checkOceania" checked>
+          <label class="custom-control-label" for="checkOceania">Oceania</label>
+        </div>
+      </a>
+    </div>
+
+    <!--Legend-->
+    <h3 class = "subTittle" style = "margin-left: 540px; top: -73px;">Continents Colors</h3>
+    <div>
+      <div class="normalText" 
+      style="width:20px; height:20px; border:1px solid black; background-color: #FFC848; margin-left: 540px; top: -70px;">
+      </div>
+      <a class="normalText" style = "margin-left: 570px; top: -92px;">Africa</a>
+
+      <div class="normalText" 
+      style="width:20px; height:20px; border:1px solid black; background-color: #76A848; margin-left: 540px; top: -92px;">
+      </div>
+      <a class="normalText" style = "margin-left: 570px; top: -114px;">America</a>
+
+      <div class="normalText" 
+      style="width:20px; height:20px; border:1px solid black; background-color: #818181; margin-left: 540px; top: -114px;">
+      </div>
+      <a class="normalText" style = "margin-left: 570px; top: -136px;">Asia</a>
+
+      <div class="normalText" 
+      style="width:20px; height:20px; border:1px solid black; background-color: #8E4B97; margin-left: 740px; top: -233px;">
+      </div>
+      <a class="normalText" style = "margin-left: 770px; top: -256px;">Europe</a>
+
+      <div class="normalText" 
+      style="width:20px; height:20px; border:1px solid black; background-color: #2F608F; margin-left: 740px; top: -255px;">
+      </div>
+      <a class="normalText" style = "margin-left: 770px; top: -277px;">Oceania</a>
+    </div>
+    <!-- Add a slider -->
+  </div>
+
+  <style>
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+    .bubbles {
+      stroke-width: 2px;
+    }
+    .bubbles:hover {
+      stroke: black;
+    }
+    .axis { 
+      font-family: 'Roboto Light', sans-serif;   
+      font-size: 12px; 
+    }
+    .graphLay {
+      height: 488px;
+      width: 925px;
+      background-color: white;
+      margin-right: 20px;
+      margin-left: 20px;
+      margin-top: -10px;
+      z-index: 1;
+      position: static;
+    }
+    .extras {
+      height: 143px;
+      width: 925px;
+      background-color: #ABC4BE;
+      margin-right: 20px;
+      margin-left: 20px;
+      margin-top: 10px;
+    }
+    .deskt{
+      height: 737px;
+      width: 965px;
+      background-color: #C9D9D5;
+    }
+    .graphDT{
+      height: 23px;
+      width: 925px;
+      background-color: white;
+      color: black;
+      font-size: 20px;
+      font-style: medium;
+      font-style: normal;
+      text-align: center;
+      margin: 20px;
+      margin-top: 15px;
+      margin-bottom: 0px;
+      z-index: 1;
+      position: static;
+      font-family: 'Roboto Medium', sans-serif;   
+      font-size: 20px;
+    }
+    .navbars{
+      height: 46px;
+      width: 965px;
+      background-color: #445F59;
+      color: white;
+      font-size: 20px;
+      font-family: 'Roboto Regular', sans-serif;
+    }
+    .navbarsContent{
+      text-align: center;
+      text-justify: center;
+      font-family: 'Roboto Light', sans-serif;   
+    }
+    .btn-ttc, .btn-secondary{
+      padding: 0px;
+      height: 22px;;
+      width: 22px;
+      margin-left: 10px;
+      margin-top: 0px;
+      background-color: rgba(196, 196, 196, 0.55);
+      display: none;
+      position: absolute;
+      border-color: rgba(196, 196, 196, 0.55);
+      z-index: 1;
+      border-color: #C4C4C4;
+      font-family: 'Roboto Light', sans-serif;   
+    }
+    .dropdown-menu{
+      margin-left: 10px;
+      margin-top: 0px;
+      background-color: rgba(196, 196, 196, 0.55);
+      display: none;
+      position: absolute;
+      border-color: rgba(196, 196, 196, 0.55);
+      z-index: 1;
+      border-color: #C4C4C4;
+      font-family: 'Roboto Regular', sans-serif;   
+      font-size: 14px;
+    }
+    .btn-primary{
+      font-family: 'Roboto Regular', sans-serif;   
+      font-size: 14px;
+    }
+    .graphLay:hover .btn-secondary{
+      display: inline-block;
+      text-align: center !important;
+      text-justify: center !important;
+      z-index: 1;
+      display: block;
+    }
+    .btn-secondary:hover{
+      background-color: rgba(196, 196, 196, 0.55);
+      border-color: rgba(196, 196, 196, 0.55);
+      border-color: #C4C4C4;
+      font-family: 'Roboto Light', sans-serif;   
+    }
+    .graphLay:hover .btn-ttc{
+      display: inline-block;
+      text-align: center !important;
+      text-justify: center !important;
+      z-index: 1;
+      display: block;
+    }
+    .slide{
+      height: 3px;
+      width: 198px;
+      background-color: black !important;
+      color: black !important;
+      position: relative;
+      margin-top: 0px;
+      margin-right: 10px;
+    }
+    .slide:hover{
+      background-color: black !important;
+      color: black !important;
+    }
+    .subTittle{
+      font-size: 14px;
+      color: black;
+      position: relative;
+      margin-top: 10px !important;
+      font-family: 'Roboto', sans-serif;
+    }
+    .normalText{
+      font-size: 14px;
+      color: black;
+      position: relative;
+      margin-top: 10px !important;   
+      font-family: 'Roboto Light', sans-serif;   
+    }
+  </style>
+</html>
+
+<script>
+
+    var selectedYear = 1970;
+    var selectedContinents = ["Asia","Europa","Africa","Oceania","America"];
+    
+    // set the dimensions and margins of the graph
+    var margin = {top: 0, right: 20, bottom: 20, left: 62},
+        width = 885 - margin.left - margin.right,
+        height = 445 - margin.top - margin.bottom;
+    
+    //Read the data
+    d3.csv("https://raw.githubusercontent.com/valevqb/ProyectoVisua/main/ByLocation.csv",
+    function (d) {d.TotalGHGEmissionsExcludingLUCF = (parseInt (d.TotalGHGEmissionsExcludingLUCF))/1000; return d;},
+    function(data) {
+      // append the svg object to the body of the page
+      function create(){
+        var svg = d3.select("#my_dataviz")
+          .append("svg")
+            .attr("width", 925)
+            .attr("height", 488)
+          .append("g")
+            .attr("transform",
+                  "translate(" + margin.left + "," + margin.top + ")",
+                  "position","absolute")
+        return svg;
+      }
+    
+      function drawDots (selectedContinents, theYear, svg){
+        // Add X axis
+        var x = d3.scaleLinear()
+          .domain([-100, d3.max(data, function(d) { return d.TotalGHGEmissionsExcludingLUCF; })])
+          .range([ -0, width]);
+        svg.append("g")
+          .attr("class", "axis")
+          .attr("transform", "translate(0," + height + ")",
+                "position","absolute")
+          .call(d3.axisBottom(x));
+    
+        // Add Y axis
+        var y = d3.scaleLinear()
+          .domain([0, 20])
+          .range([ height, 10]);
+        svg.append("g")
+          .attr("class", "axis",
+                "transform", "translate(" + width + ",0" + ")",
+                "position","absolute")
+          .call(d3.axisLeft(y));
+    
+        // Add a scale for bubble size
+        var z = d3.scaleLinear()
+          .domain([0, d3.max(data, function(d) { return d.TotalPopulationEstimates; })])
+          .range([2, 4]);
+    
+        // -1- Create a tooltip div that is hidden by default:
+        var tooltip = d3.select("#my_dataviz")
+          .append("div")
+            .style("opacity", 0)
+            .attr("class", "tooltip")
+            .style("background-color", "black")
+            .style("border-radius", "5px")
+            .style("padding", "10px")
+            .style("color", "white")
+    
+        // -2- Create 3 functions to show / update (when mouse move but stay on same circle) / hide the tooltip
+        var showTooltip = function(d) {
+          tooltip
+            .transition()
+            .duration(200)
+          tooltip
+            .style("opacity", 1)
+            .html("Continent: " + d.Continent + "<br/>" + 
+                  "GHG Emissions: " + d.TotalGHGEmissionsExcludingLUCF + "<br/>" +
+                  "CO2 Emissions: " + d.AnnualCO2Emissions)
+            .style("left", (d3.mouse(this)[0]) + "px")
+            .style("top", (d3.mouse(this)[1]) + "px")
+        }
+        var moveTooltip = function(d) {
+          tooltip
+            .style("left", (d3.mouse(this)[0]) + "px")
+            .style("top", (d3.mouse(this)[1]) + "px")
+        }
+        var hideTooltip = function(d) {
+          tooltip
+            .transition()
+            .duration(200)
+            .style("opacity", 0)
+        }
+
+        function selectColor(d){
+          if (d.Continent == "Africa" ){
+            return "rgba(255,200,75,50%)"
+          } if (d.Continent == "America" ){
+            return "rgba(118,168,72,50%)"
+          } if (d.Continent == "Asia" ){
+            return "rgba(129,129,129,50%)"
+          }
+          if (d.Continent == "Europa" ){
+            return "rgba(142,175,151,50%)"
+          }
+          if (d.Continent == "Oceania" ){
+            return "rgba(47,96,143,50%)"
+          }
+        }
+    
+        svg.append('g')
+        .selectAll("dot")
+        .data(data.filter(function (d){
+          return (parseInt(d.Year) == theYear) && (selectedContinents.includes(d.Continent)) 
+        }))
+        .enter()
+        .append("circle")
+          .attr("class", "bubbles")
+          .attr("cx", function (d) { 
+            return x(d.TotalGHGEmissionsExcludingLUCF); } )
+          .attr("cy", function (d) { return y(d.AnnualCO2Emissions); } )
+          .attr("r", function (d) { return z(d.TotalPopulationEstimates);})
+          .style("fill", function (d) {return selectColor(d)})
+        // -3- Trigger the functions
+        .on("mouseover", showTooltip )
+        .on("mousemove", moveTooltip )
+        .on("mouseleave", hideTooltip )
+    
+        return svg;
+    
+        }
+    
+      //selecciona
+      var allGroup = d3.map(data, function(d){return(d.Continent)}).keys()
+    
+      // Listen to the slider?
+      d3.select("#yearSlider").on("change", function(d){
+        selectedValue = this.value;
+        d3.select("svg").remove();
+        selectedYear = selectedValue;
+        drawDots(selectedContinents,selectedValue,create());
+      })
+
+      //Continent selection
+      d3.select("#dropMenu1").on("click", function(d){
+        d3.select("svg").remove();
+        if(selectedContinents.indexOf((event.target.id).substr(5)) == -1){
+          selectedContinents.push((event.target.id).substr(5))
+        }
+        else{
+          selectedContinents.splice(selectedContinents.indexOf((event.target.id).substr(5)),1)
+        }
+        if(selectedContinents.indexOf('') != -1){
+          selectedContinents.splice(selectedContinents.indexOf(''),1)
+        }
+        drawDots(selectedContinents,selectedYear,create());
+      })
+      
+      var expanded = false;
+      drawDots(selectedContinents,selectedYear,create());
+    
+    })
+</script>
